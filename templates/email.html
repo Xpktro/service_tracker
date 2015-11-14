@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+  <h1>Service Tracker Update</h1>
+  <hr>
+
+  <h2>Services</h2>
+  <table>
+    <tr>
+      <th>Service</th>
+      <th>Status</th>
+    </tr>
+    {% for service in services %}
+      <tr>
+        <td>{{ service.name }}</td>
+        <td>{{ service.get_status_display }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <hr>
+
+  <h2>Last Statuses</h2>
+  {% for status in statuses %}
+      <h3>{% if status.service %}{{ status.service.name }} &mdash; {% endif %}{{ status.title }}</h3>
+      <div>{{ status.text }}</div>
+      <div><strong>Submitted:</strong> {{ status.created_at }} &mdash; <strong>Last Update:</strong> {{ status.updated_at }}</div>
+      {% if not forloop.last %}<br> &mdash;{% endif %}
+  {% endfor %}
+  <hr>
+
+  <div>
+    &copy; 2015 &mdash; Service Tracker @ Moises Cachay
+  </div>
+  </body>
+</html>
