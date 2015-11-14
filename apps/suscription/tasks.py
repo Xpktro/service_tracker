@@ -15,7 +15,7 @@ def send_mass_email():
     to = []
     suscribers = Suscriber.objects.filter(enabled=True)
     service_queryset = Service.objects.all()
-    status_queryset = ServiceStatus.objects.all()
+    status_queryset = ServiceStatus.objects.all()[:4]
     suscribers_count = suscribers.count()
     email_content = render_to_string(
         'email.html',
